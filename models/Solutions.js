@@ -26,6 +26,9 @@ const SolutionSchema = new mongoose.Schema(
       type: Array,
       required: false,
     },
+    icon: {
+      type:String
+    }
   },
   { timestamps: true }
 );
