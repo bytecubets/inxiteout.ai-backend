@@ -14,6 +14,8 @@ const contactsRoute = require("./routes/contacts");
 const multer = require("multer");
 const path = require("path");
 const cors = require('cors');
+const auth = require("./middleware/auth");
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
@@ -60,7 +62,7 @@ app.use("/api/teams", TeamsRoute);
 app.use("/api/caseStudies", caseStudyRoute);
 app.use("/api/contacts", contactsRoute);
 
-app.listen(process.env.PORT || "5000", () => {
+app.listen(process.env.PORT || "5100", () => {
   console.log("Backend is running.");
   // console.log(process.env)
 });
