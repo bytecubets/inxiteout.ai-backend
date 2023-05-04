@@ -9,7 +9,7 @@ exports.basicPostSchema = Joi.object({
   
     username: Joi.string()
     .required(),
-});
+}).options({ allowUnknown: true });
 exports.caseStudySchema = Joi.object({
     title: Joi.string()
         .min(3)
@@ -27,12 +27,12 @@ exports.caseStudySchema = Joi.object({
 
     username: Joi.string()
     .required(),
-});
+}).options({ allowUnknown: true });
 exports.catSchema = Joi.object({
     name: Joi.string()
         .min(3)
         .required()
-});
+}).options({ allowUnknown: true });
 exports.expertiseSchema = Joi.object({
     title: Joi.string()
         .min(3)
@@ -43,7 +43,7 @@ exports.expertiseSchema = Joi.object({
   
     username: Joi.string()
     .required(),
-});
+}).options({ allowUnknown: true });
 exports.solutionSchema = Joi.object({
     title: Joi.string()
         .min(3)
@@ -54,7 +54,7 @@ exports.solutionSchema = Joi.object({
   
     username: Joi.string()
     .required(),
-});
+}).options({ allowUnknown: true });
 exports.userSchema = Joi.object({
     username: Joi.string()
         .min(5)
@@ -68,7 +68,7 @@ exports.userSchema = Joi.object({
     password: Joi.string()
     .min(8)
     .required(),
-});
+}).options({ allowUnknown: true });
 exports.loginSchema = Joi.object({
     username: Joi.string()
         .min(5)
@@ -78,4 +78,4 @@ exports.loginSchema = Joi.object({
     password: Joi.string()
     .min(8)
     .required(),
-});
+}).options({ allowUnknown: true });
