@@ -26,6 +26,7 @@ router.post("/register", [validate(validation.userSchema)], async (req, res) => 
       email: req.body.email,
       password: hashedPass,
     });
+    const savedPost = await newUser.save();
     const { password, ...others } = user._doc;
 
     return res.status(200).json(others);

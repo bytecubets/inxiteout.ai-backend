@@ -74,23 +74,42 @@ router.get("/", async (req, res) => {
   const username = req.query.user;
   const catName = req.query.cat;
   const searchText = req.query.search;
+  const page = parseInt(req.query.page);
+  const limit = parseInt(req.query.limit);
+  const skipIndex = (page - 1) * limit;
   try {
     let posts;
     if (username) {
-      posts = await Post.find({ username });
+      posts = await Post.find({ username })
+      .sort({ createdAt: -1 })
+        .limit(limit)
+        .skip(skipIndex)
+        .exec();
     } else if (catName) {
       posts = await Post.find({
         categories: {
           $in: [catName],
         },
-      });
+      })
+      .sort({ createdAt: -1 })
+        .limit(limit)
+        .skip(skipIndex)
+        .exec();
     } else if(searchText){
       
       const query = { $text: { $search: searchText } };
-      posts = await Post.find(query);
+      posts = await Post.find(query)
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .skip(skipIndex)
+      .exec();
     }
      else {
-      posts = await Post.find();
+      posts = await Post.find()
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .skip(skipIndex)
+      .exec();
     }
     return res.status(200).json(posts);
   } catch (err) {
